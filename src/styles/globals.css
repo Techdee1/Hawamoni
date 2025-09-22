@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles for consistent mobile-first design */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  body {
+    @apply bg-midnight text-white;
+    @apply supports-[height:100dvh]:min-h-[100dvh] min-h-screen;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  /* Scrollbar styling for webkit browsers */
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-slate;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-solana-blue;
+  }
+}
+
+/* Component utility classes */
+@layer components {
+  /* Button variants - consistent with brand */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-midnight bg-solana-teal hover:bg-primary-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-solana-teal focus:ring-offset-midnight disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-solana-teal/25;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-muted text-sm font-medium rounded-md text-white bg-slate hover:bg-slate/80 hover:border-solana-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-solana-blue focus:ring-offset-midnight disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200;
+  }
+  
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md text-muted hover:text-solana-blue hover:bg-slate focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-solana-blue focus:ring-offset-midnight disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200;
+  }
+
+  /* Card components */
+  .card {
+    @apply bg-slate rounded-lg border border-slate/50 shadow-sm backdrop-blur-sm;
+  }
+  
+  .card-body {
+    @apply p-4 sm:p-6;
+  }
+
+  /* Form inputs */
+  .input {
+    @apply block w-full px-3 py-2 bg-slate border border-muted/20 rounded-md shadow-sm placeholder-muted text-white focus:outline-none focus:ring-solana-teal focus:border-solana-teal sm:text-sm transition-all duration-200;
+  }
+  
+  .input-error {
+    @apply border-terracotta text-white placeholder-terracotta/60 focus:outline-none focus:ring-terracotta focus:border-terracotta;
+  }
+}
+
+/* Utility classes for mobile-first PWA */
+@layer utilities {
+  /* Safe area insets for mobile devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Gradient text utility */
+  .gradient-text {
+    @apply bg-gradient-to-r from-solana-teal to-solana-blue bg-clip-text text-transparent;
+  }
+
+  /* Solana glow effect */
+  .glow-teal {
+    box-shadow: 0 0 20px rgba(0, 255, 163, 0.3);
+  }
+  
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(3, 225, 255, 0.3);
+  }
+  
+  .glow-magenta {
+    box-shadow: 0 0 20px rgba(220, 31, 255, 0.3);
+  }
+
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Touch-friendly tap targets */
+  .tap-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
