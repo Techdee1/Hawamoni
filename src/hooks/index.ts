@@ -2,3 +2,4 @@
 // This file serves as a placeholder and index for the hooks directory
 
 export * from './useLocalStorage'
+export * from './useAuth'
