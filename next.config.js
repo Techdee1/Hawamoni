@@ -34,7 +34,14 @@ const nextConfig = {
     optimizePackageImports: ['@heroicons/react'],
   },
   images: {
-    domains: ['api.qrserver.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.qrserver.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
     formats: ['image/webp', 'image/avif'],
   },
   webpack: (config, { dev, isServer }) => {

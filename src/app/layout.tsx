@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import '../styles/globals.css'
+import { WalletProvider } from '../components/providers/WalletProvider'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -102,9 +103,11 @@ export default function RootLayout({
         <meta name="msapplication-TileImage" content="/logo.png" />
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
-        <div id="app-root" className="min-h-screen">
-          {children}
-        </div>
+        <WalletProvider>
+          <div id="app-root" className="min-h-screen">
+            {children}
+          </div>
+        </WalletProvider>
         <div id="modal-root" />
         <div id="toast-root" />
       </body>

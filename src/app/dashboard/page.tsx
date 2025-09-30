@@ -25,6 +25,7 @@ import {
   Bars3Icon,
   XMarkIcon
 } from '@heroicons/react/24/outline'
+import { SolanaPayDashboard } from '@/components/solana/SolanaPayDashboard'
 import { 
   mockGroups, 
   mockRequests, 
@@ -49,6 +50,7 @@ export default function DashboardPage() {
   const [showInviteModal, setShowInviteModal] = useState(false)
   const [showCreateGroupModal, setShowCreateGroupModal] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
+  const [showSolanaPayDashboard, setShowSolanaPayDashboard] = useState(false)
 
   const currentGroup = selectedGroupId ? getCurrentGroup(selectedGroupId) : null
   const pendingRequests = getPendingRequestsForUser('1') // Mock current user ID
@@ -322,8 +324,40 @@ export default function DashboardPage() {
           <p className="text-muted">Manage your group treasuries and transactions</p>
         </div>
 
-        {/* Quick Actions */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        {/* View Toggle */}
+        <div className="mb-8">
+          <div className="flex items-center space-x-4 bg-slate/20 rounded-xl p-2 w-fit">
+            <button
+              onClick={() => setShowSolanaPayDashboard(false)}
+              className={`px-4 py-2 rounded-lg transition-all font-medium ${
+                !showSolanaPayDashboard
+                  ? 'bg-white/10 text-white'
+                  : 'text-muted hover:text-white'
+              }`}
+            >
+              Treasury Dashboard
+            </button>
+            <button
+              onClick={() => setShowSolanaPayDashboard(true)}
+              className={`px-4 py-2 rounded-lg transition-all font-medium flex items-center gap-2 ${
+                showSolanaPayDashboard
+                  ? 'bg-gradient-to-r from-solana-teal to-solana-blue text-white glow-teal-sm'
+                  : 'text-muted hover:text-white'
+              }`}
+            >
+              <QrCodeIcon className="w-4 h-4" />
+              Solana Pay
+            </button>
+          </div>
+        </div>
+
+        {/* Conditional Content */}
+        {showSolanaPayDashboard ? (
+          <SolanaPayDashboard className="mb-8" />
+        ) : (
+          <>
+            {/* Quick Actions */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
           <button 
             onClick={() => setShowDepositModal(true)}
             className="p-6 bg-gradient-to-br from-solana-teal/20 to-solana-blue/20 backdrop-blur-sm rounded-xl border border-solana-teal/30 hover:from-solana-teal/30 hover:to-solana-blue/30 transition-all duration-300 text-left group glow-teal-sm"
@@ -598,6 +632,9 @@ export default function DashboardPage() {
             )}
           </div>
         </div>
+
+          </>
+        )}
 
         {/* Simple Modal Placeholders */}
         {showDepositModal && (
