@@ -47,6 +47,20 @@ export const mockMembers: Member[] = [
 // Mock groups
 export const mockGroups: Group[] = [
   {
+    id: 'group-class-fund',
+    name: 'Computer Science Class Fund',
+    logo: '/group-logos/class.png',
+    balance: 3.8, // SOL
+    fiatBalance: 950000, // NGN (assuming 1 SOL = ₦250,000)
+    approvalsRequired: 3,
+    currentApprovals: 2,
+    pdaAddress: 'ClsFnd2025PDA7xKXtg2CW87d97TXJSDpbD5jBkheTqA',
+    members: mockMembers,
+    role: 'owner',
+    createdAt: '2025-08-15T08:00:00Z',
+    lastActivity: '2025-09-29T14:22:00Z'
+  },
+  {
     id: 'group-1',
     name: 'Family Savings',
     logo: '/group-logos/family.png',
@@ -92,6 +106,50 @@ export const mockGroups: Group[] = [
 
 // Mock requests
 export const mockRequests: Request[] = [
+  {
+    id: 'req-class-1',
+    groupId: 'group-class-fund',
+    requesterId: '2',
+    requesterName: 'Sarah Johnson',
+    requesterAvatar: '/avatars/sarah.jpg',
+    recipientId: '2',
+    recipientName: 'Sarah Johnson',
+    recipientAddress: '9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM',
+    amount: 0.6,
+    fiatAmount: 150000,
+    reason: 'Final Year Project Materials',
+    description: 'Arduino kits, sensors, and components for our IoT project. Vendor quotes attached.',
+    status: 'pending',
+    approvals: [
+      {
+        memberId: '1',
+        memberName: 'Akeem Odebiyi',
+        memberAvatar: '/avatars/akeem.jpg',
+        approvedAt: '2025-09-29T11:15:00Z',
+        signature: '5VKjR3RjWMzGDGqFUJt7z8FHvJzVVZRRtGqSQQwjz8FHvJzVVZ',
+        comment: 'Good investment for final year'
+      },
+      {
+        memberId: '3',
+        memberName: 'David Chen',
+        memberAvatar: '/avatars/david.jpg',
+        approvedAt: '2025-09-29T13:22:00Z',
+        signature: '7mT4RjWMzGDGqFUJt7z8FHvJzVVZRRtGqSQQwjz8FH',
+        comment: 'Project looks promising'
+      }
+    ],
+    approvalsRequired: 3,
+    createdAt: '2025-09-29T09:30:00Z',
+    attachments: [
+      {
+        id: 'att-class-1',
+        type: 'document',
+        url: '/attachments/arduino-quote.pdf',
+        filename: 'arduino-components-quote.pdf',
+        size: 180240
+      }
+    ]
+  },
   {
     id: 'req-1',
     groupId: 'group-1',
@@ -167,6 +225,44 @@ export const mockRequests: Request[] = [
 
 // Mock activity feed
 export const mockActivity: Activity[] = [
+  {
+    id: 'act-class-1',
+    type: 'request_created',
+    groupId: 'group-class-fund',
+    memberId: '2',
+    memberName: 'Sarah Johnson',
+    memberAvatar: '/avatars/sarah.jpg',
+    amount: 0.6,
+    fiatAmount: 150000,
+    description: 'Created withdrawal request for Final Year Project Materials',
+    timestamp: '2025-09-29T09:30:00Z'
+  },
+  {
+    id: 'act-class-2',
+    type: 'request_approved',
+    groupId: 'group-class-fund',
+    memberId: '1',
+    memberName: 'Akeem Odebiyi',
+    memberAvatar: '/avatars/akeem.jpg',
+    amount: 0.6,
+    fiatAmount: 150000,
+    description: 'Approved project materials request from Sarah Johnson',
+    timestamp: '2025-09-29T11:15:00Z'
+  },
+  {
+    id: 'act-class-3',
+    type: 'deposit',
+    groupId: 'group-class-fund',
+    memberId: '4',
+    memberName: 'Grace Okafor',
+    memberAvatar: '/avatars/grace.jpg',
+    amount: 0.2,
+    fiatAmount: 50000,
+    description: 'Class dues payment via Solana Pay',
+    txSignature: '8fkZbGvj3tTGgMjJmNjYnGjF4TvF8P8NaQLj4JNJyeZrwHaAiw6QYD7m1tQ9v8y9ZzQzGv',
+    explorerLink: 'https://explorer.solana.com/tx/8fkZbGvj3tTGgMjJmNjYnGjF4TvF8P8NaQLj4JNJyeZrwHaAiw6QYD7m1tQ9v8y9ZzQzGv',
+    timestamp: '2025-09-28T16:45:00Z'
+  },
   {
     id: 'act-1',
     type: 'request_created',
